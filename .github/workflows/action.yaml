@@ -70,14 +70,16 @@ jobs:
         if: runner.os == 'Windows'
         run: choco install fastfetch -y
 
-      # 4. Fastfetch -c all --pipe false 실행 후 TXT 파일 저장
-      - name: Run Fastfetch and Save to TXT
+      # 4. user@hostname.txt 파일명으로 저장
+      - name: Run Fastfetch and Save as user@hostname.txt
         run: |
-          fastfetch -c all --pipe false > "fastfetch-${{ matrix.runner }}.txt"
+          FILENAME="$(whoami)@$(hostname).txt"
+          fastfetch -c all --pipe false > "$FILENAME"
 
-      # 5. 생성된 TXT 파일 업로드
-      - name: Upload Fastfetch TXT Artifact
+      # 5. 모든 결과를 하나의 아티팩트로 통합 업로드 (한 번에 다운로드 가능)
+      - name: Upload Combined Fastfetch Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: fastfetch-${{ matrix.runner }}
-          path: fastfetch-${{ matrix.runner }}.txt
+          name: fastfetch-results
+          path: "*.txt"
+          merge-multiple: true
