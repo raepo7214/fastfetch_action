@@ -1,0 +1,28 @@
+name: Run Fastfetch and Save File
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  fastfetch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Fastfetch
+        run: |
+          sudo add-apt-repository ppa:zhangsongcui3371/fastfetch -y
+          sudo apt-get update
+          sudo apt-get install -y fastfetch
+
+      - name: Run Fastfetch & Save to File
+        run: |
+          fastfetch --pipe false -c all > fastfetch.txt
+
+      - name: Upload Fastfetch Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: fastfetch-results
+          path: |
+            fastfetch.txt
