@@ -1,4 +1,4 @@
-name: Run Fastfetch and Save File
+name: Fastfetch All Modules to TXT
 
 on:
   push:
@@ -6,23 +6,78 @@ on:
   workflow_dispatch:
 
 jobs:
-  fastfetch:
-    runs-on: ubuntu-latest
+  fastfetch-all:
+    name: Fastfetch (${{ matrix.runner }})
+    runs-on: ${{ matrix.runner }}
+    
+    defaults:
+      run:
+        shell: bash
+
+    strategy:
+      fail-fast: false
+      matrix:
+        runner:
+          # Linux x64
+          - ubuntu-slim
+          - ubuntu-latest
+          - ubuntu-24.04
+          - ubuntu-22.04
+          - ubuntu-26.04
+
+          # Linux ARM64
+          - ubuntu-24.04-arm
+          - ubuntu-22.04-arm
+          - ubuntu-26.04-arm
+
+          # Windows x64
+          - windows-latest
+          - windows-2025
+          - windows-2025-vs2026
+          - windows-2022
+
+          # Windows ARM64
+          - windows-11-arm
+          - windows-11-vs2026-arm
+
+          # macOS Intel (x64)
+          - macos-15-intel
+          - macos-26-intel
+
+          # macOS Apple Silicon (ARM64)
+          - macos-latest
+          - macos-14
+          - macos-15
+          - macos-26
+          - xcode-27
 
     steps:
-      - name: Install Fastfetch
+      # 1. Linux 패키지 설치
+      - name: Install Fastfetch (Linux)
+        if: runner.os == 'Linux'
         run: |
           sudo add-apt-repository ppa:zhangsongcui3371/fastfetch -y
           sudo apt-get update
           sudo apt-get install -y fastfetch
 
-      - name: Run Fastfetch & Save to File
-        run: |
-          fastfetch --pipe false -c all > fastfetch.txt
+      # 2. macOS Homebrew 패키지 설치
+      - name: Install Fastfetch (macOS)
+        if: runner.os == 'macOS'
+        run: brew install fastfetch
 
-      - name: Upload Fastfetch Results
+      # 3. Windows Chocolatey 패키지 설치
+      - name: Install Fastfetch (Windows)
+        if: runner.os == 'Windows'
+        run: choco install fastfetch -y
+
+      # 4. Fastfetch -c all --pipe false 실행 후 TXT 파일 저장
+      - name: Run Fastfetch and Save to TXT
+        run: |
+          fastfetch -c all --pipe false > "fastfetch-${{ matrix.runner }}.txt"
+
+      # 5. 생성된 TXT 파일 업로드
+      - name: Upload Fastfetch TXT Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: fastfetch-results
-          path: |
-            fastfetch.txt
+          name: fastfetch-${{ matrix.runner }}
+          path: fastfetch-${{ matrix.runner }}.txt
