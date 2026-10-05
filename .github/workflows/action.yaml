@@ -76,10 +76,29 @@ jobs:
           FILENAME="$(whoami)@$(hostname).txt"
           fastfetch -c all --pipe false > "$FILENAME"
 
-      # 5. 모든 결과를 하나의 아티팩트로 통합 업로드 (한 번에 다운로드 가능)
+      # 5. 각 러너별 결과 임시 업로드
+      - name: Upload Individual Fastfetch Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fastfetch-${{ matrix.runner }}
+          path: "*.txt"
+
+  # 모든 매트릭스 작업이 완료된 후 하나로 합치는 Job
+  combine-results:
+    name: Combine All Results
+    needs: fastfetch-all
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 모든 fastfetch-* 아티팩트를 다운로드받아 단일 폴더에 병합
+      - name: Download All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: fastfetch-*
+          merge-multiple: true
+
+      # 2. 하나로 합쳐진 txt 파일 전체를 하나의 아티팩트로 최종 업로드
       - name: Upload Combined Fastfetch Artifact
         uses: actions/upload-artifact@v4
         with:
           name: fastfetch-results
           path: "*.txt"
-          merge-multiple: true
