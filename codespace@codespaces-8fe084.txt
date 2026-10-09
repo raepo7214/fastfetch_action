@@ -1,0 +1,23 @@
+[m[1m[31m                             ....[m              [m[1m[31mcodespace[m@[1m[31mcodespaces-8fe084[m
+[1m[31m              [31m.',:clooo:  [31m.:looooo:.[m           ---------------------------
+[1m[31m           [31m.;looooooooc  [31m.oooooooooo'[m          [m[1m[31mOS[m: [mUbuntu 24.04.5 LTS (Noble Numbat) x86_64
+[1m[31m        [31m.;looooool:,''.  [31m:ooooooooooc[m          [m[1m[31mHost[m: [mVirtual Machine (7.0)
+[1m[31m       [31m;looool;.         [31m'oooooooooo,[m          [m[1m[31mKernel[m: [mLinux 6.8.0-1064-azure
+[1m[31m      [31m;clool'             [31m.cooooooc.  [31m,,[m       [m[1m[31mUptime[m: [m1 hour, 8 mins
+[1m[31m         [31m...                [31m......  [31m.:oo,[m      [m[1m[31mPackages[m: [m579 (dpkg)
+[1m[31m  [31m.;clol:,.                        [31m.loooo'[m     [m[1m[31mShell[m: [mbash 5.2.21
+[1m[31m [31m:ooooooooo,                        [31m'ooool[m     [m[1m[31mDisplay (Virtual-1)[m: [m1024x768
+[1m[31m[31m'ooooooooooo.                        [31mloooo.[m    [m[1m[31mTerminal[m: [mMainThread
+[1m[31m[31m'ooooooooool                         [31mcoooo.[m    [m[1m[31mCPU[m: [mAMD EPYC 7763 64-Core (2) @ 3.24 GHz
+[1m[31m [31m,loooooooc.                        [31m.loooo.[m    [m[1m[31mGPU[m: [mMicrosoft Device 5353 (VGA compatible)
+[1m[31m   [31m.,;;;'.                          [31m;ooooc[m     [m[1m[31mMemory[m: [m1.73 GiB / 7.76 GiB ([32m22%[m)
+[1m[31m       [31m...                         [31m,ooool.[m     [m[1m[31mSwap[m: [mDisabled
+[1m[31m    [31m.cooooc.              [31m..',,'.  [31m.cooo.[m      [m[1m[31mDisk (/)[m: [m10.89 GiB / 31.33 GiB ([32m35%[m) - overlay
+[1m[31m      [31m;ooooo:.           [31m;oooooooc.  [31m:l.[m       [m[1m[31mDisk (/tmp)[m: [m3.08 GiB / 43.99 GiB ([32m7%[m) - ext4
+[1m[31m       [31m.coooooc,..      [31mcoooooooooo.[m           [m[1m[31mDisk (/usr/sbin/docker-init)[m: [m15.24 GiB / 28.89 GiB ([93m53%[m) - ext4 [Read-only]
+[1m[31m         [31m.:ooooooolc:. [31m.ooooooooooo'[m           [m[1m[31mLocal IP (eth0)[m: [m10.0.11.170/16
+[1m[31m           [31m.':loooooo;  [31m,oooooooooc[m            [m[1m[31mLocale[m: [mC.UTF-8
+[1m[31m               [31m..';::c'  [31m.;loooo:'[m             
+                                               [m[40m   [41m   [42m   [43m   [44m   [45m   [46m   [47m   [m
+                                               [100m   [101m   [102m   [103m   [104m   [105m   [106m   [107m   [m
+[m
