@@ -74,7 +74,7 @@ jobs:
       - name: Run Fastfetch and Save as user@hostname.txt
         run: |
           FILENAME="$(whoami)@$(hostname).txt"
-          fastfetch -c all --pipe false > "$FILENAME"
+          fastfetch --pipe false > "$FILENAME"
 
       # 5. 각 러너별 결과 임시 업로드
       - name: Upload Individual Fastfetch Artifact
